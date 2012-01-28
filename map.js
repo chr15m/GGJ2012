@@ -3,11 +3,11 @@ function Map(seed) {
 	var p = new noise.SimplexNoise(r);
 	this.field = [];
 	this.terraintypes = [
-		"water",
+		"grass",
 		"road",
 		"sand",
 		"trees",
-		"grass"
+		"water"
 	];
 	this.bounds = [0, 0, 0, 0];
 	
@@ -42,7 +42,7 @@ function Map(seed) {
 				var trees = treep > 1.15
 				
 				if (lake || river || oasis) {
-					terrain = 0;
+					terrain = 4;
 				} else if (roads || riversideRoads) {
 					terrain = 1;
 				} else if (desert) {
@@ -50,7 +50,7 @@ function Map(seed) {
 				} else if (trees) {
 					terrain = 3;
 				} else {
-					terrain = 4;
+					terrain = 0;
 				}
 				this.field[x - rect[0]][y - rect[1]] = terrain;
 			}

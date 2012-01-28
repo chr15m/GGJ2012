@@ -4,8 +4,7 @@ function World(gs) {
 	var player = gs.addEntity(new Player(gs, this));
 	this.shadow = (new Sprite(["center", "center"], {"default": [["res/img/shadow.png", 3]]})).action("default");
 	this.map = new Map();
-	var loadnew = false;
-	// this.map.set_rectangle([]);
+	var loadnew = true;
 	
 	var clrs = {
 		"water": "rgba(170, 170, 204, 0.5)",
@@ -20,14 +19,16 @@ function World(gs) {
 	}
 	
 	this.update = function() {
+		// set the camera on the player
 		iso.set_focus(player.position);
+		// "load" a new section of the randomly generated map
 		if (loadnew) {
 			// screen bounds in the isometric world
 			var corners = [
-				iso.s2w([0, 0]).each(rounder),
-				iso.s2w([0, gs.height]).each(rounder),
-				iso.s2w([gs.width, 0]).each(rounder),
-				iso.s2w([gs.width, gs.height]).each(rounder)
+				iso.s2w([0, 0]).each(Math.round),
+				iso.s2w([0, gs.height]).each(Math.round),
+				iso.s2w([gs.width, 0]).each(Math.round),
+				iso.s2w([gs.width, gs.height]).each(Math.round)
 			];
 			// calculate the field we want to load from the map
 			this.map.set_rectangle([corners[0][0], corners[1][1], corners[3][0] - corners[0][0], corners[2][1] - corners[1][1]]);
@@ -56,12 +57,8 @@ function World(gs) {
 		c.stroke();*/
 		
 		// draw highlighted square
-		this.draw_square(c, iso.s2w(gs.pointerPosition).each(rounder), "rgba(255, 255, 255, 0.75)");
-		/*this.draw_square(c, [0,0], "rgba(204, 170, 170, 0.5)");
-		this.draw_square(c, [0,4], "rgba(170, 170, 204, 0.5)");
-		this.draw_square(c, [0,-4], "rgba(170, 170, 204, 0.5)");
-		this.draw_square(c, [4,0], "rgba(170, 170, 204, 0.5)");
-		this.draw_square(c, [-4,0], "rgba(170, 170, 204, 0.5)");*/
+		this.draw_square(c, iso.s2w(gs.pointerPosition).each(Math.round), "rgba(255, 255, 255, 0.75)");
+		// draw background tiles according to what is on them.
 		var field = this.map.bounds;
 		for (var x=field[0]; x<field[0] + field[2]; x++) {
 			for (var y=field[1]; y<field[1] + field[3]; y++) {
@@ -76,7 +73,7 @@ function World(gs) {
 	}
 	
 	this.pointerDown = function(i) {
-		player.moveTo(iso.s2w(gs.pointerPosition).each(rounder));
+		player.moveTo(iso.s2w(gs.pointerPosition).each(Math.round));
 		loadnew = true;
 	}
 	
