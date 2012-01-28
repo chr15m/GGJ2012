@@ -1,6 +1,9 @@
 function Player(gs, world) {
 	this.priority = 10;
 	this.position = [0, 0];
+	this.destination = [0, 0];
+	this.close_threshold = 0.03;
+	this.velocity = 0.01;
 	
 	var sprite = new Sprite(["center", "bottom"], {
 		"down-left": [
@@ -22,7 +25,10 @@ function Player(gs, world) {
 	}
 	
 	this.update = function() {
-		
+		// do we need to move closer
+		if (this.destination[0] != this.position[0] || this.destination[1] != this.position[1]) {
+			
+		}
 	}
 	
 	this.draw = function(c) {
