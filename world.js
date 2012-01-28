@@ -1,6 +1,7 @@
 function World(gs) {
-	var iso = new Isometric();
+	var iso = this.iso = new Isometric();
 	iso.set_screen_object(gs);
+	var player = gs.addEntity(new Player(gs, this));
 	
 	this.update = function() {
 		
