@@ -1,6 +1,10 @@
-function Map(seed) {
-	var r = new SeedableRandom(seed == null ? 18091980 : seed);
+function Map(gs, world) {
+	var seed = 18091980;
+	var r = new SeedableRandom(seed);
+	var tr = new SeedableRandom();
 	var p = new noise.SimplexNoise(r);
+	this.trees = [];
+	
 	this.field = [];
 	this.terraintypes = [
 		"grass",
@@ -12,6 +16,10 @@ function Map(seed) {
 	this.bounds = [0, 0, 0, 0];
 	
 	this.set_rectangle = function(rect) {
+		for (var t=0; t<this.trees.length; t++) {
+			gs.delEntity(this.trees[t]);
+		}
+		this.trees = [];
 		this.field = [];
 		this.bounds = rect;
 		for (var x = rect[0]; x < rect[0] + rect[2]; x++)
@@ -27,7 +35,7 @@ function Map(seed) {
 				var waterp = p.noise(x / 150.0, y / 150.0)
 				var roadsp = (Math.abs(p.noise(x / 50.0, y / 50.0)))
 				
-				var treep = Math.max(0, p.noise(x / 300.0, y / 300.0)) + p.noise(x / 3.0, y / 3.0)
+				var treep = Math.max(0, p.noise(x / 50.0, y / 50.0)) + p.noise(x / 3.0, y / 3.0)
 				
 				// water bits
 				var oasis = desertp > 0.95
@@ -39,7 +47,7 @@ function Map(seed) {
 				var roads = Math.abs(roadsp) < 0.05
 				var riversideRoads = desertp < 0.6 && Math.abs(waterp) < 0.11 && Math.abs(waterp > 0.08)
 				// trees
-				var trees = treep > 1.15
+				var trees = treep > 0.75
 				
 				if (lake || river || oasis) {
 					terrain = 4;
@@ -49,6 +57,8 @@ function Map(seed) {
 					terrain = 2;
 				} else if (trees) {
 					terrain = 3;
+					tr.seed3d(x, y, seed);
+					this.trees.push(gs.addEntity(new Tree(gs, world, 1, [x + tr.next() - 0.5, y + tr.next() - 0.5])));
 				} else {
 					terrain = 0;
 				}

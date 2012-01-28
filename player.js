@@ -39,7 +39,8 @@ function Player(gs, world) {
 				var direction = (angle < Math.PI * .25 && angle > Math.PI * -.75 ? "down" : "up") + "-" + (angle < Math.PI * -0.25 || angle > Math.PI * 0.75 ? "left" : "right");
 				sprite.action(direction);
 			}
-		}	
+		}
+		this.priority = 65536 - this.position[1];
 	}
 	
 	this.draw = function(c) {

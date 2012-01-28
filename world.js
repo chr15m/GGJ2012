@@ -3,7 +3,7 @@ function World(gs) {
 	iso.set_screen_object(gs);
 	var player = gs.addEntity(new Player(gs, this));
 	this.shadow = (new Sprite(["center", "center"], {"default": [["res/img/shadow.png", 3]]})).action("default");
-	this.map = new Map();
+	this.map = new Map(gs, this);
 	var loadnew = true;
 	
 	var clrs = {
@@ -37,6 +37,7 @@ function World(gs) {
 		if (player.changed_square()) {
 			loadnew = true;
 		}
+		gs.sortEntities();
 	}
 	
 	this.draw = function(c) {
