@@ -26,6 +26,7 @@ function Player(gs, world) {
 	}
 	
 	this.draw = function(c) {
+		world.shadow.draw(c, world.iso.w2s([this.position[0], this.position[1], 0]));
 		sprite.draw(c, world.iso.w2s([this.position[0], this.position[1], 0.3]));
 	}
 	

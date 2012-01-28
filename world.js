@@ -2,6 +2,7 @@ function World(gs) {
 	var iso = this.iso = new Isometric();
 	iso.set_screen_object(gs);
 	var player = gs.addEntity(new Player(gs, this));
+	this.shadow = (new Sprite(["center", "center"], {"default": [["res/img/shadow.png", 3]]})).action("default");
 	
 	this.update = function() {
 		

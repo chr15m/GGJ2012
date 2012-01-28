@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			body, html, table {
+				width: 100%;
+				height: 100%;				
+				padding: 0px;
+				margin: 0px;
+				font-family: Arial;
+			}
+			
+			table {
+				border-spacing: 0px;
+			}
+			
+			td {
+				border: 0px solid gray;
+				padding: 0px;
+				margin: 0px;
+			}
+			
+			td.water {
+				background: #9999ff;
+			}
+			
+			td.road {
+				background: #333333;
+			}
+			
+			td.sand {
+				background: #ffff00;
+			}
+			
+			td.trees {
+				background: #99ff99;
+			}
+			
+			td.grass {
+				background: #00aa00;
+			}
+			
+			div#notice {
+				position: absolute;
+				background: white;
+				border: 2px solid #333333;
+				padding: 5px;
+			}
+		</style>
+		<script src="jsGameSoup/js/noise.js"></script>
+		<script src="jsGameSoup/js/random.js"></script>
+		<script src="map.js"></script>
+	</head>
+	<body>
+		<script>
+			rect = [0, 0, 120, 60];
+			var m = new Map();
+			m.set_rectangle(rect);
+			
+			document.write("<table>");
+			for (var y = rect[1]; y < rect[1] + rect[3]; y++)
+			{
+				document.write("<tr>");
+				for (var x = rect[0]; x < rect[0] + rect[2]; x++)		
+				{
+					document.write("<td class='" + m.get_tile(x, y) + "'></td>");
+				}
+				document.write("</tr>");
+			}
+			document.write("</table>");
+		</script>
+	</body>
+</html>
