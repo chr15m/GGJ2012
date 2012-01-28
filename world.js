@@ -8,27 +8,24 @@ function World(gs) {
 	}
 	
 	this.draw = function(c) {
-		// draw the grid
+		var bounds = iso.s2w([-gs.width / 2, gs.height / 2]);
+		// draw the grid - profiled at 70% on my laptop - ridiculous!
+		c.strokeStyle = "#aca";
+		c.beginPath();
 		for (var gx=-10; gx<11; gx++) {
-			var start = iso.w2s([gx, -10]);
-			var end = iso.w2s([gx, 10]);
-			c.strokeStyle = "#aca";
-			c.beginPath();
+			var start = iso.w2s([gx, -bounds[1]]);
+			var end = iso.w2s([gx, bounds[1]]);
 			c.moveTo(start[0], start[1]);
 			c.lineTo(end[0], end[1]);
-			c.closePath();
-			c.stroke();
 		}
 		for (var gy=-10; gy<11; gy++) {
-			var start = iso.w2s([-10, gy]);
-			var end = iso.w2s([10, gy]);
-			c.strokeStyle = "#aca";
-			c.beginPath();
+			var start = iso.w2s([-bounds[0], gy]);
+			var end = iso.w2s([bounds[0], gy]);
 			c.moveTo(start[0], start[1]);
 			c.lineTo(end[0], end[1]);
-			c.closePath();
-			c.stroke();
 		}
+		c.closePath();
+		c.stroke();
 	}
 	
 	this.pointerBox = function() {
