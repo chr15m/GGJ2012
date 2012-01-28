@@ -1,5 +1,6 @@
 function Player(gs, world) {
 	this.priority = 10;
+	this.position = [0, 0];
 	
 	var sprite = new Sprite(["center", "bottom"], {
 		"down-left": [
@@ -25,6 +26,10 @@ function Player(gs, world) {
 	}
 	
 	this.draw = function(c) {
-		sprite.draw(c, world.iso.w2s([0, 0, 0.3]));
+		sprite.draw(c, world.iso.w2s([this.position[0], this.position[1], 0.3]));
+	}
+	
+	this.moveTo = function(pos) {
+		this.position = pos;
 	}
 }

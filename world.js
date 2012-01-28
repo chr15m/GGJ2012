@@ -30,4 +30,20 @@ function World(gs) {
 			c.stroke();
 		}
 	}
+	
+	this.pointerBox = function() {
+		return [0, 0, gs.width, gs.height];
+	}
+	
+	this.pointerDown = function(i) {
+		player.moveTo(iso.s2w(gs.pointerPosition));
+	}
+	
+	this.pointerMove = function() {
+		
+	}
+	
+	this.pointerUp = function(i) {
+		
+	}
 }

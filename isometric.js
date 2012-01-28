@@ -15,7 +15,17 @@ Isometric = function(tilesize, skew) {
 	
 	/** Translate screen/pixel coordinates into isometric (ground) coordinates. */
 	this.screen_to_world = function(pos) {
+		var width = (this.screen ? this.screen.width / 2 : 0);
+		var height = (this.screen ? this.screen.height / 2 : 0);
+		var ox = this.pos[0];
+		var oy = this.pos[1];
+		var nx = pos[0];
+		var ny = pos[1];
 		
+		return [
+			-(skew*width-nx*skew-ny+height)/(2*skew*tilesize) - ox,
+			-(skew*width-nx*skew+ny-height)/(2*skew*tilesize) - oy
+		];
 	}
 	/** Alias for screen_to_world. */
 	this.s2w = this.screen_to_world;
@@ -26,7 +36,12 @@ Isometric = function(tilesize, skew) {
 		var x = pos[0] + this.pos[0];
 		var y = pos[1] + this.pos[1];
 		var z = pos.length == 3 ? pos[2] : 0;
-		return [(x + y) * tilesize + (this.screen ? this.screen.width / 2 : 0), ((x - y) * skew - z) * tilesize + (this.screen ? this.screen.height / 2 : 0)];
+		var width = (this.screen ? this.screen.width / 2 : 0);
+		var height = (this.screen ? this.screen.height / 2 : 0);
+		return [
+			(x + y) * tilesize + width,
+			((x - y) * skew - z) * tilesize + height
+		];
 	}
 	/** Alias for world_to_screen. */
 	this.w2s = this.world_to_screen;	
