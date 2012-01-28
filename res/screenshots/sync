@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rsync -avz *.png chrism@mccormick.cx:~/web/gfx/blogref/GGJ2012/

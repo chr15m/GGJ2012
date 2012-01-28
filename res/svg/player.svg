@@ -7,6 +7,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
@@ -28,7 +29,30 @@
     </rdf:RDF>
   </metadata>
   <defs
-     id="defs3881" />
+     id="defs3881">
+    <linearGradient
+       id="linearGradient5275">
+      <stop
+         style="stop-color:#000000;stop-opacity:0.1754386;"
+         offset="0"
+         id="stop5277" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop5279" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5275"
+       id="radialGradient5281"
+       cx="-385.06912"
+       cy="618.67413"
+       fx="-385.06912"
+       fy="618.67413"
+       r="84.419655"
+       gradientTransform="matrix(1,0,0,0.62255856,0,233.51325)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -42,9 +66,9 @@
      inkscape:window-height="728"
      id="namedview3879"
      showgrid="false"
-     inkscape:zoom="0.89223058"
-     inkscape:cx="-245.53958"
-     inkscape:cy="160.24886"
+     inkscape:zoom="0.44611529"
+     inkscape:cx="-180.08307"
+     inkscape:cy="-149.01618"
      inkscape:window-x="0"
      inkscape:window-y="16"
      inkscape:window-maximized="1"
@@ -81,8 +105,8 @@
      transform="translate(-534.09859,202.41344)"
      style="fill:#ffffff"
      inkscape:export-filename="/home/chrism/dev/web/The_Cycle_GGJ-2012/res/img/player-right-down.png"
-     inkscape:export-xdpi="90"
-     inkscape:export-ydpi="90">
+     inkscape:export-xdpi="29.85"
+     inkscape:export-ydpi="29.85">
     <path
        id="path3906"
        d="M 380.32865,69.193118 365.96138,73.594101 357.2802,80.956461 353,91 350,99 348,109 348,114 350,125 357,144 369,158 387,166 412,169 426,165 445,153 451,135 452,113 447,94 440,81 425,73 417,70 397.05302,67.113413 z"
@@ -117,13 +141,16 @@
      style="fill:#ffffff;stroke:#000000;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      d="M -363.47186,358.96937 -353.40259,359.33866 -353.56016,360.32616 -353.56016,360.32616 -354.54767,360.16866 -354.39009,359.18106 -353.40259,359.33866 M -357.20422,334.12983 -340.25902,335.82108 -340.25902,335.82108 -341.24653,335.6635 -340.25902,335.82108 -336.98135,334.31878 M -397.17722,330.7894 -380.23203,332.48065 -380.23203,332.48065 -381.21954,332.32307 -380.3896,333.46815 -380.07445,331.49314 M -312.85333,389.41347 -305.85333,393.41347 -295.85333,403.41347 -288.85333,417.41347 -283.85333,423.41347 -273.85333,434.41347 -266.85333,443.41347 -263.85333,447.41347 -262.85333,451.41347 -259.85333,455.4135 -259.85333,460.4135 -260.85333,463.4135 -263.85333,465.4135 -267.85333,467.4135 -270.85333,466.4135 -271.85333,464.4135 -277.85333,460.4135 -281.85333,454.4135 -284.85333,450.41347 -287.85333,447.41347 -290.85333,442.41347 -293.85333,437.41347 -295.85333,431.41347 -297.85333,428.41347 -298.85333,428.41347 -303.85333,423.41347 -307.85333,419.41347 -308.85333,417.41347 -312.85333,414.41347 -316.85333,412.41347 -316.85333,410.41347 -319.85332,406.41347 -322.85332,405.41347 -323.85332,403.41347 -324.85332,403.41347 -327.85332,402.41347 -327.85332,402.41347 -327.85332,401.41347 -328.85332,402.41347 -326.85332,408.41347 -317.85333,433.41347 -316.85333,435.41347 -316.85333,443.41347 -315.85333,450.41347 -314.85333,457.4135 -314.85333,462.4135 -313.85333,471.4135 -312.85333,477.4135 -314.85333,481.4135 -320.85332,484.4135 -325.85332,484.4135 -327.85332,484.4135 -340.85332,484.4135 -352.85332,483.4135 -364.85332,483.4135 -373.85332,481.4135 -384.85332,479.4135 -389.85332,477.4135 -390.85332,478.4135 -395.85332,474.4135 -399.85332,467.4135 -401.85332,456.4135 -401.85332,447.41347 -401.85332,434.41347 -399.85332,422.41347 -398.85332,416.41347 -395.85332,411.41347 -394.85332,408.41347 -394.85332,408.41347 -395.85332,405.41347 -394.85332,403.41347 -393.85332,401.41347 -392.85332,401.41347 -392.85332,400.41347 -398.85332,406.41347 -407.85332,416.41347 -415.85332,423.41347 -424.85332,435.41347 -433.85332,442.41347 -438.85332,446.41347 -439.85332,449.41347 -445.85332,454.4135 -448.85332,458.4135 -450.85332,458.4135 -451.85332,460.4135 -456.85332,459.4135 -462.85332,454.4135 -462.85332,449.41347 -461.85332,442.41347 -458.85332,436.41347 -455.85332,429.41347 -448.85332,421.41347 -438.85332,416.41347 -433.85332,412.41347 -430.85332,409.41347 -424.85332,404.41347 -417.85332,398.41347 -414.85332,394.41347 -409.85332,391.41347 -406.85332,386.41347 -402.85332,383.41347 -402.85332,383.41347 -398.85332,379.41347 -394.85332,376.41347 -390.85332,375.41347 -384.85332,372.41347 -371.85332,372.41347 -362.85332,372.41347 -354.85332,373.41347 -343.85332,374.41347 -333.85332,376.41347 -327.85332,379.41347 -321.85332,380.41347 -319.83515,382.57527 z M -331.18197,271.60656 -316.81471,276.00754 -308.13353,283.3699 -303.85333,293.41344 -300.85333,301.41344 -298.85333,311.41344 -298.85333,316.41344 -300.85333,327.41344 -307.85333,346.41344 -319.85332,360.41347 -337.85332,368.41347 -362.85332,371.41347 -376.85332,367.41347 -395.85332,355.41347 -401.85332,337.41344 -402.85332,315.41344 -397.85332,296.41344 -390.85332,283.41344 -375.85332,275.41344 -367.85332,272.41344 -347.90634,269.52685 z"
      inkscape:connector-curvature="0"
-     sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" />
+     sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     inkscape:export-filename="/home/chrism/dev/web/The_Cycle_GGJ-2012/res/img/player-left-down.png"
+     inkscape:export-xdpi="30.129999"
+     inkscape:export-ydpi="30.129999" />
   <g
      id="g3968"
      style="fill:#ffffff"
      inkscape:export-filename="/home/chrism/dev/web/The_Cycle_GGJ-2012/res/img/player-right-up.png"
-     inkscape:export-xdpi="90"
-     inkscape:export-ydpi="90">
+     inkscape:export-xdpi="30.139534"
+     inkscape:export-ydpi="30.139534">
     <path
        sodipodi:nodetypes="cccccccccccccccccccccc"
        inkscape:connector-curvature="0"
@@ -141,8 +168,8 @@
      id="g3964"
      style="fill:#ffffff"
      inkscape:export-filename="/home/chrism/dev/web/The_Cycle_GGJ-2012/res/img/player-left-up.png"
-     inkscape:export-xdpi="90"
-     inkscape:export-ydpi="90">
+     inkscape:export-xdpi="30.129999"
+     inkscape:export-ydpi="30.129999">
     <path
        id="path3947"
        d="M -331.18197,24.341642 -316.81471,28.742622 -308.13353,36.104982 -303.85333,46.148522 -300.85333,54.148522 -298.85333,64.148522 -298.85333,69.148522 -300.85333,80.148522 -307.85333,99.148522 -319.85332,113.14852 -337.85332,121.14852 -362.85332,124.14852 -376.85332,120.14852 -395.85332,108.14852 -401.85332,90.148522 -402.85332,68.148522 -397.85332,49.148522 -390.85332,36.148522 -375.85332,28.148522 -367.85332,25.148522 -347.90634,22.261932 z"
@@ -156,4 +183,16 @@
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" />
   </g>
+  <path
+     sodipodi:type="arc"
+     style="fill:url(#radialGradient5281);fill-opacity:1.0;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+     id="path5273"
+     sodipodi:cx="-385.06912"
+     sodipodi:cy="618.67413"
+     sodipodi:rx="83.419655"
+     sodipodi:ry="51.556179"
+     d="M -301.64947,618.67413 A 83.419655,51.556179 0 1 1 -468.48878,618.67413 83.419655,51.556179 0 1 1 -301.64947,618.67413 z"
+     inkscape:export-filename="/home/chrism/dev/web/The_Cycle_GGJ-2012/res/img/shadow.png"
+     inkscape:export-xdpi="29.85"
+     inkscape:export-ydpi="29.85" />
 </svg>
