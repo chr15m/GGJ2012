@@ -4,6 +4,7 @@ function Player(gs, world) {
 	this.destination = vectorize([0, 0]);
 	this.close_threshold = 0.1;
 	this.velocity = 0.1;
+	this.last_square = vectorize([0, 0]);
 	
 	var sprite = new Sprite(["center", "bottom"], {
 		"down-left": [
@@ -33,8 +34,12 @@ function Player(gs, world) {
 				this.position = this.destination;
 			} else {
 				this.position.add(towards.unit().multiply(this.velocity));
+				towards.unit();
+				var angle = Math.atan2(towards[1], towards[0]);
+				var direction = (angle < Math.PI * .25 && angle > Math.PI * -.75 ? "down" : "up") + "-" + (angle < Math.PI * -0.25 || angle > Math.PI * 0.75 ? "left" : "right");
+				sprite.action(direction);
 			}
-		}
+		}	
 	}
 	
 	this.draw = function(c) {
@@ -42,7 +47,15 @@ function Player(gs, world) {
 		sprite.draw(c, world.iso.w2s([this.position[0], this.position[1], 0.3]));
 	}
 	
-	this.moveTo = function(pos) {
+	this.move_to = function(pos) {
 		this.destination = vectorize(pos.slice());
+	}
+	
+	this.changed_square = function() {
+		var currentsquare = this.position.slice().each(Math.round);
+		if (!this.last_square.equals(currentsquare)) {
+			this.last_square = vectorize(currentsquare);
+			return true;
+		}
 	}
 }

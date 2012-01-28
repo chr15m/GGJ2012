@@ -31,8 +31,11 @@ function World(gs) {
 				iso.s2w([gs.width, gs.height]).each(Math.round)
 			];
 			// calculate the field we want to load from the map
-			this.map.set_rectangle([corners[0][0], corners[1][1], corners[3][0] - corners[0][0], corners[2][1] - corners[1][1]]);
+			this.map.set_rectangle([corners[0][0] - 1, corners[1][1] - 1, corners[3][0] - corners[0][0] + 3, corners[2][1] - corners[1][1] + 3]);
 			loadnew = false;
+		}
+		if (player.changed_square()) {
+			loadnew = true;
 		}
 	}
 	
@@ -73,7 +76,7 @@ function World(gs) {
 	}
 	
 	this.pointerDown = function(i) {
-		player.moveTo(iso.s2w(gs.pointerPosition).each(Math.round));
+		player.move_to(iso.s2w(gs.pointerPosition).each(Math.round));
 		loadnew = true;
 	}
 	
