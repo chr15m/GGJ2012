@@ -132,7 +132,7 @@
   <g
      inkscape:export-ydpi="29.964092"
      inkscape:export-xdpi="29.964092"
-     inkscape:export-filename="/home/chrism/dev/games/The_Cycle_GGJ-2012/res/img/ghost-left.png"
+     inkscape:export-filename="/home/chrism/dev/games/The_Cycle_GGJ-2012/res/img/ghost-eat-1.png"
      style="fill:#ffffff"
      id="g4155"
      transform="translate(22.532029,526.74768)">
@@ -164,7 +164,7 @@
      transform="translate(166.5531,526.74768)"
      id="g4167"
      style="fill:#ffffff"
-     inkscape:export-filename="/home/chrism/dev/games/The_Cycle_GGJ-2012/res/img/ghost-left.png"
+     inkscape:export-filename="/home/chrism/dev/games/The_Cycle_GGJ-2012/res/img/ghost-eat-2.png"
      inkscape:export-xdpi="29.964092"
      inkscape:export-ydpi="29.964092">
     <path
@@ -195,7 +195,7 @@
   <g
      inkscape:export-ydpi="29.964092"
      inkscape:export-xdpi="29.964092"
-     inkscape:export-filename="/home/chrism/dev/games/The_Cycle_GGJ-2012/res/img/ghost-left.png"
+     inkscape:export-filename="/home/chrism/dev/games/The_Cycle_GGJ-2012/res/img/ghost-eat-3.png"
      style="fill:#ffffff"
      id="g4184"
      transform="translate(308.89299,526.74768)">
@@ -228,7 +228,7 @@
      transform="translate(511.30872,526.74768)"
      id="g4200"
      style="fill:#ffffff"
-     inkscape:export-filename="/home/chrism/dev/games/The_Cycle_GGJ-2012/res/img/ghost-left.png"
+     inkscape:export-filename="/home/chrism/dev/games/The_Cycle_GGJ-2012/res/img/ghost-eat-4.png"
      inkscape:export-xdpi="29.964092"
      inkscape:export-ydpi="29.964092">
     <path
@@ -256,4 +256,14 @@
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ssssssssssss" />
   </g>
+  <rect
+     style="opacity:0;fill:#fddc27;fill-opacity:1;stroke:#fddc27;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+     id="rect3024"
+     width="10.087079"
+     height="12.328651"
+     x="-81.817413"
+     y="452.79776"
+     inkscape:export-filename="/home/chrism/dev/games/The_Cycle_GGJ-2012/res/img/blank.png"
+     inkscape:export-xdpi="29.964092"
+     inkscape:export-ydpi="29.964092" />
 </svg>

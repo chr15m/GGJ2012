@@ -3,7 +3,6 @@ function Critter(gs, world, pos, current, random, npcs) {
 	statemachine(this);
 	var statenames = ["mushroom", "floaty", "ghost"];
 	var anim = ["mushroom-1", "floaty", "ghost-left"];
-	console.log(current);
 	this.position = vectorize(pos);
 	this.destination = null;
 	this.velocity = 0;
@@ -18,11 +17,23 @@ function Critter(gs, world, pos, current, random, npcs) {
 		"ghost-right": [
 			["res/img/ghost-right.png", 3]
 		],
+		"ghost-eat": [
+			["res/img/ghost-eat-1.png", 3],
+			["res/img/ghost-eat-2.png", 3],
+			["res/img/ghost-eat-3.png", 3],
+			["res/img/ghost-eat-4.png", 3],
+			["res/img/ghost-eat-3.png", 3],
+			["res/img/ghost-eat-2.png", 3],
+			["res/img/ghost-eat-1.png", 3]
+		],
 		"floaty": [
 			["res/img/floaty-cute-1.png", 5],
 			["res/img/floaty-cute-2.png", 5],
 			["res/img/floaty-cute-3.png", 5],
 			["res/img/floaty-cute-2.png", 5]
+		],
+		"floaty-invisible": [
+			["res/img/blank.png", 5],
 		],
 		"mushroom-1": [
 			["res/img/mushroom-1.png", 3]
@@ -31,6 +42,7 @@ function Critter(gs, world, pos, current, random, npcs) {
 			["res/img/mushroom-2.png", 3]
 		]
 	});
+	this.sprite = sprite;
 	
 	this.init = function() {
 		this.set_state(statenames[current]);
@@ -56,6 +68,7 @@ function Critter(gs, world, pos, current, random, npcs) {
 	}
 	
 	this.seek_type = function(type) {
+		this.destination = null;
 		var candidates = [];
 		// find a thing of type specified
 		for (var n=0; n<npcs.length; n++) {
@@ -102,18 +115,26 @@ function Critter(gs, world, pos, current, random, npcs) {
 	}
 	
 	this.ghost_update = function(c) {
-		if (!this.destination) {
-			this.seek_type("floaty");
-		}
-		var towards = this.move_to_destination(function() {
-			// found a 'floaty' thing
-			console.log("ghost got floaty");
-		});
-		if (towards) {
-			towards.unit();
-			var angle = Math.atan2(towards[1], towards[0]);
-			var direction = "ghost-" + (angle < Math.PI * -0.25 || angle > Math.PI * 0.75 ? "left" : "right");
-			sprite.action(direction);
+		if (sprite.get_action() != "ghost-eat") {
+			if (towards) {
+				towards.unit();
+				var angle = Math.atan2(towards[1], towards[0]);
+				var direction = "ghost-" + (angle < Math.PI * -0.25 || angle > Math.PI * 0.75 ? "left" : "right");
+				sprite.action(direction);
+			}
+			if (!this.destination || this.destination.state != "floaty") {
+				this.seek_type("floaty");
+			}
+			var me = this;
+			var towards = this.move_to_destination(function() {
+				// found a 'floaty' thing
+				var other = me.destination;
+				// other.sprite.action("floaty-invisible");
+				sprite.action("ghost-eat", true, function() {
+					other.set_state("ghost");
+					sprite.action("ghost-left");
+				});
+			});
 		}
 		sprite.update();
 		this.priority = world.iso.w2s(this.position)[1];
