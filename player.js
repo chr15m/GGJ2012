@@ -52,6 +52,10 @@ function Player(gs, world) {
 		this.destination = vectorize(pos.slice());
 	}
 	
+	this.set_position = function(pos) {
+		this.destination = this.position = vectorize(pos);
+	}
+	
 	this.changed_square = function() {
 		var currentsquare = this.position.slice().each(Math.round);
 		if (!this.last_square.equals(currentsquare)) {

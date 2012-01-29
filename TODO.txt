@@ -9,4 +9,5 @@ Shrubs
 SFX
 Music
 Polish
+Loading screens - art, sound, level data generation
 Jsgamesoup link?

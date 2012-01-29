@@ -3,15 +3,16 @@ function World(gs) {
 	iso.set_screen_object(gs);
 	var player = gs.addEntity(new Player(gs, this));
 	this.shadow = (new Sprite(["center", "center"], {"default": [["res/img/shadow.png", 3]]})).action("default");
-	this.map = new Map(gs, this);
+	fieldsize = [20, 20];
+	this.map = new Map(gs, this, fieldsize);
 	var loadnew = true;
 	
 	var clrs = {
-		"water": "rgba(170, 170, 204, 0.5)",
-		"road": "rgba(50, 50, 50, 0.75)",
-		"sand": "rgba(204, 204, 170, 0.75)",
-		"trees": "rgba(170, 204, 170, 0.75)",
-		"grass": "rgba(180, 255, 180, 0.75)",
+		"water": "rgb(70, 70, 204)",
+		"road": "rgb(70, 70, 70)",
+		"sand": "rgb(204, 204, 70)",
+		"trees": "rgb(180, 255, 180)",
+		"grass": "rgb(180, 255, 180)",
 	};
 	
 	function rounder(i, e) {
@@ -60,16 +61,18 @@ function World(gs) {
 		c.closePath();
 		c.stroke();*/
 		
-		// draw highlighted square
-		this.draw_square(c, iso.s2w(gs.pointerPosition).each(Math.round), "rgba(255, 255, 255, 0.75)");
 		// draw background tiles according to what is on them.
 		var field = this.map.bounds;
 		for (var x=field[0]; x<field[0] + field[2]; x++) {
 			for (var y=field[1]; y<field[1] + field[3]; y++) {
 				//console.log(clrs[this.map.get_tile(x, y)]);
-				this.draw_square(c, [x,y], clrs[this.map.get_tile(x, y)]);
+				if (x >= 0 && y >= 0 && x < fieldsize[0] && y < fieldsize[1]) {
+					this.draw_square(c, [x,y], clrs[this.map.get_tile(x, y)]);
+				}
 			}
 		}
+		// draw highlighted square
+		this.draw_square(c, iso.s2w(gs.pointerPosition).each(Math.round), "rgba(255, 255, 255, 0.5)");
 	}
 	
 	this.pointerBox = function() {
@@ -77,8 +80,10 @@ function World(gs) {
 	}
 	
 	this.pointerDown = function(i) {
-		player.move_to(iso.s2w(gs.pointerPosition).each(Math.round));
-		loadnew = true;
+		var newsquare = iso.s2w(gs.pointerPosition).each(Math.round);
+		if (newsquare[0] >= 0 && newsquare[1] >= 0 && newsquare[0] < fieldsize[0] && newsquare[1] < fieldsize[1]) {
+			player.move_to(newsquare);
+		}
 	}
 	
 	this.pointerMove = function() {
