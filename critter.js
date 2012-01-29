@@ -1,9 +1,8 @@
-function Critter(gs, world, pos, random, npcs) {
+function Critter(gs, world, pos, current, random, npcs) {
 	// this critter is a statemachine
 	statemachine(this);
 	var statenames = ["mushroom", "floaty", "ghost"];
 	var anim = ["mushroom-1", "floaty", "ghost-left"];
-	var current = random.nextInt(0, 3);
 	console.log(current);
 	this.position = vectorize(pos);
 	this.destination = null;
@@ -106,7 +105,10 @@ function Critter(gs, world, pos, random, npcs) {
 		if (!this.destination) {
 			this.seek_type("floaty");
 		}
-		var towards = this.move_to_destination();
+		var towards = this.move_to_destination(function() {
+			// found a 'floaty' thing
+			console.log("ghost got floaty");
+		});
 		if (towards) {
 			towards.unit();
 			var angle = Math.atan2(towards[1], towards[0]);

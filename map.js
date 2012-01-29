@@ -23,6 +23,7 @@ function Map(gs, world, size) {
 	this.init = function(rect) {
 		this.props = [];
 		this.field = [];
+		var maketype = 0;
 		for (var x = 0; x < size[0]; x++)
 		{
 			this.field[x] = [];
@@ -72,8 +73,9 @@ function Map(gs, world, size) {
 				
 				// randomly add npcs
 				tr.seed3d(wx, wy, seed);
-				if (tr.next() > .975) {
-					npcs.push(gs.addEntity(new Critter(gs, world, [wx, wy], tr, npcs)));
+				if (tr.next() > .99) {
+					npcs.push(gs.addEntity(new Critter(gs, world, [wx, wy], maketype, tr, npcs)));
+					maketype = (maketype + 1) % 3;
 				}
 				
 				this.field[wx][wy] = terrain;
