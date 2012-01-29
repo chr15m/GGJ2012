@@ -1,13 +1,15 @@
-Cache noise
-Ghosts -> Mushrooms -> Floaty
-Portal
-Loop noise
-Trees
-Dirt circles
-Rocks
-Shrubs
-SFX
-Music
-Polish
-Loading screens - art, sound, level data generation
-Jsgamesoup link?
+ * Cache noise
+ * Ghosts -> Mushrooms -> Floaty
+ * Portal
+ * Loop noise
+ * Trees
+ * Dirt circles
+ * Rocks
+ * Shrubs
+ * SFX
+ * Music
+
+ * Polish
+ * Loading screens - art, sound, level data generation
+ * Screen resize code
+ * Jsgamesoup link?

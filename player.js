@@ -40,11 +40,11 @@ function Player(gs, world) {
 				sprite.action(direction);
 			}
 		}
-		this.priority = 65536 - this.position[1];
+		this.priority = world.iso.w2s(this.position)[1];
 	}
 	
 	this.draw = function(c) {
-		world.shadow.draw(c, world.iso.w2s([this.position[0], this.position[1], 0]));
+		world.shadow.draw(c, world.iso.w2s(this.position));
 		sprite.draw(c, world.iso.w2s([this.position[0], this.position[1], 0.3]));
 	}
 	
