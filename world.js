@@ -8,7 +8,7 @@ function World(gs) {
 	this.shadow = (new Sprite(["center", "center"], {"default": [["res/img/shadow.png", 3]]})).action("default");
 	
 	this.map = new Map(gs, this, fieldsize);
-	var player = gs.addEntity(new Player(gs, this)).set_position([fieldsize[0] / 2, fieldsize[1] / 2]);
+	var player = this.player = gs.addEntity(new Player(gs, this)).set_position([fieldsize[0] / 2, fieldsize[1] / 2]);
 	
 	var loadnew = true;
 	
@@ -76,6 +76,7 @@ function World(gs) {
 					var tile = this.map.get_tile(x, y);
 					if (tile != "grass" && tile != "trees") {
 						this.draw_square(c, [x,y], clrs[tile]);
+						//this.draw_oval(c, iso.w2s([x, y]), clrs[tile], 64, false);
 					}
 				}
 			}
@@ -85,6 +86,16 @@ function World(gs) {
 		if (isopointer[0] >= 0 && isopointer[1] >= 0 && isopointer[0] < fieldsize[0] && isopointer[1] < fieldsize[1]) {
 			this.draw_square(c, isopointer, "rgba(255, 255, 255, 0.5)");
 		}
+	}
+	
+	this.draw_oval = function(c, pos, color, radius, stroke) {
+		c.save();
+		c.scale(1, 0.5);
+		c.beginPath();
+		c.arc(pos[0], pos[1], radius, 0, Math.PI*2, false);
+		stroke ? c.stroke() : c.fill();
+		c.closePath();
+		c.restore();
 	}
 	
 	this.pointerBox = function() {

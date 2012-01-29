@@ -68,7 +68,7 @@ function Map(gs, world, size) {
 				// add a tree if this is a tree tile
 				if (terrain == 3) {
 					tr.seed3d(wx, wy, seed);
-					this.props.push(gs.addEntity(new Tree(gs, world, 1, [wx + tr.next() - 0.5, wy + tr.next() - 0.5])));
+					this.props.push(gs.addEntity(new Tree(gs, world, tr.nextInt(0, 2) + 1, [wx + tr.next() - 0.5, wy + tr.next() - 0.5])));
 				}
 				
 				// randomly add npcs

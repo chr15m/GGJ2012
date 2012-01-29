@@ -7,6 +7,8 @@ function Critter(gs, world, pos, current, random, npcs) {
 	this.destination = null;
 	this.velocity = 0;
 	this.push = vectorize([0, 0]);
+	this.enemies = null;
+	this.calculate_push = null;
 	
 	var oscillate = 0.25 + (Math.random() * 0.01);
 	
@@ -51,6 +53,9 @@ function Critter(gs, world, pos, current, random, npcs) {
 		if (this.destination != null) {
 			// get the vector pointing towards the destination
 			towards = vectorize(this.destination.position.slice()).subtract(this.position);
+			if (this.calculate_push) {
+				towards.add(this.calculate_push());
+			}
 			if (towards.abs() <= this.velocity) {
 				this.position = vectorize(this.destination.position.slice());
 				if (found_callback) {
@@ -79,18 +84,22 @@ function Critter(gs, world, pos, current, random, npcs) {
 	}
 	
 	this.find_closest_of_type = function(type) {
-		var candidates = [];
+		var closest = null;
+		var closest_dist = 65536;
 		for (var n=0; n<npcs.length; n++) {
-			
+			if (npcs[n].state == type) {
+				var dist = vectorize(npcs[n].position.slice()).subtract(this.position).abs();
+				if (dist < closest_dist) {
+					closest_dist = dist;
+					closest = npcs[n];
+				}
+			}
 		}
-		if (candidates.length) {
-		} else {
-			return null;
-		}
+		return closest;
 	}
 	
 	this.seek_type = function(type) {
-		this.destination = this.find_random_of_type(type);
+		this.destination = this.find_closest_of_type(type);
 	}
 	
 	this.set_random_position = function(pos) {
@@ -103,6 +112,7 @@ function Critter(gs, world, pos, current, random, npcs) {
 	this.floaty_init = function(c) {
 		sprite.action("floaty");
 		this.velocity = 0.05;
+		this.calculate_push = null;
 	}
 	
 	this.floaty_draw = function(c) {
@@ -130,7 +140,8 @@ function Critter(gs, world, pos, current, random, npcs) {
 	
 	this.ghost_init = function(b) {
 		sprite.action("ghost-left");
-		this.velocity = 0.09;
+		this.velocity = 0.075;
+		this.calculate_push = this.ghost_push;
 	}
 	
 	this.ghost_draw = function(c) {
@@ -169,10 +180,18 @@ function Critter(gs, world, pos, current, random, npcs) {
 		this.priority = world.iso.w2s(this.position)[1];
 	}
 	
+	this.ghost_push = function() {
+		// run away from the player
+		var away = vectorize(this.position.slice()).subtract(world.player.position);
+		var dist = away.abs();
+		return away.unit().multiply((50 - dist) / 25);
+	}
+	
 	/*** Mushroom mode ***/
 	
 	this.mushroom_init = function(c) {
 		sprite.action("mushroom-" + (random.nextInt(0, 2) + 1));
+		this.calculate_push = null;
 	}
 	
 	this.mushroom_draw = function(c) {
