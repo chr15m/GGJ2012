@@ -18,13 +18,10 @@ function Critter(gs, world, pos, current, random, npcs) {
 			["res/img/ghost-right.png", 3]
 		],
 		"ghost-eat": [
-			["res/img/ghost-eat-1.png", 3],
-			["res/img/ghost-eat-2.png", 3],
-			["res/img/ghost-eat-3.png", 3],
-			["res/img/ghost-eat-4.png", 3],
-			["res/img/ghost-eat-3.png", 3],
-			["res/img/ghost-eat-2.png", 3],
-			["res/img/ghost-eat-1.png", 3]
+			["res/img/ghost-eat-1.png", 5],
+			["res/img/ghost-eat-2.png", 5],
+			["res/img/ghost-eat-3.png", 5],
+			["res/img/ghost-eat-4.png", 5]
 		],
 		"floaty": [
 			["res/img/floaty-cute-1.png", 5],
@@ -59,7 +56,6 @@ function Critter(gs, world, pos, current, random, npcs) {
 				if (found_callback) {
 					found_callback();
 				}
-				this.destination = null;
 			} else {
 				this.position.add(towards.unit().multiply(this.velocity));
 			}
@@ -67,8 +63,7 @@ function Critter(gs, world, pos, current, random, npcs) {
 		return towards;
 	}
 	
-	this.seek_type = function(type) {
-		this.destination = null;
+	this.find_random_of_type = function(type) {
 		var candidates = [];
 		// find a thing of type specified
 		for (var n=0; n<npcs.length; n++) {
@@ -77,8 +72,30 @@ function Critter(gs, world, pos, current, random, npcs) {
 			}
 		}
 		if (candidates.length) {
-			this.destination = candidates[random.nextInt(0, candidates.length)];
+			return candidates[random.nextInt(0, candidates.length)];
+		} else {
+			return null;
 		}
+	}
+	
+	this.find_closest_of_type = function(type) {
+		var candidates = [];
+		for (var n=0; n<npcs.length; n++) {
+			
+		}
+		if (candidates.length) {
+		} else {
+			return null;
+		}
+	}
+	
+	this.seek_type = function(type) {
+		this.destination = this.find_random_of_type(type);
+	}
+	
+	this.set_random_position = function(pos) {
+		this.destination = null;
+		this.position = vectorize([random.nextInt(0, world.fieldsize[0]), random.nextInt(0, world.fieldsize[1])]);
 	}
 	
 	/*** Floaty mode ***/
@@ -97,7 +114,14 @@ function Critter(gs, world, pos, current, random, npcs) {
 		if (!this.destination) {
 			this.seek_type("mushroom");
 		}
-		this.move_to_destination();
+		var me = this;
+		this.move_to_destination(function() {
+			// me.destination.set_state("floaty");
+			me.destination.set_random_position();
+			// find a random ghost and turn it into a mushroom
+			//me.find_random_of_type("floaty").set_state("mushroom");
+			this.destination = null;
+		});
 		sprite.update();
 		this.priority = world.iso.w2s(this.position)[1];
 	}
@@ -129,12 +153,17 @@ function Critter(gs, world, pos, current, random, npcs) {
 			var towards = this.move_to_destination(function() {
 				// found a 'floaty' thing
 				var other = me.destination;
-				// other.sprite.action("floaty-invisible");
+				//other.sprite.action("floaty-invisible");
 				sprite.action("ghost-eat", true, function() {
-					other.set_state("ghost");
+					// other.set_state("ghost");
+					other.set_random_position();
 					sprite.action("ghost-left");
+					//me.find_random_of_type("ghost").set_state("floaty");
+					me.destination = null;
 				});
 			});
+		} else if (this.destination) {
+			this.move_to_destination();
 		}
 		sprite.update();
 		this.priority = world.iso.w2s(this.position)[1];

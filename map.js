@@ -31,27 +31,27 @@ function Map(gs, world, size) {
 			{
 				var wx = x.mod(size[0]);
 				var wy = y.mod(size[1]);
-				var detail = Math.abs(p.noise(wx / 300.0, wy / 300.0))
-				var desert1 = -p.noise(wx / 100.0, wy / 100.0)
-				var desert2 = p.noise(wx / 10.0, wy / 10.0)
-				var desertp = desert1 * detail + desert2 * (1.0 - detail)
+				var detail = Math.abs(p.noise(wx / 300.0, wy / 300.0));
+				var desert1 = -p.noise(wx / 100.0, wy / 100.0);
+				var desert2 = p.noise(wx / 10.0, wy / 10.0);
+				var desertp = desert1 * detail + desert2 * (1.0 - detail);
 				
-				var waterp = p.noise(wx / 150.0, wy / 150.0)
-				var roadsp = (Math.abs(p.noise(wx / 50.0, wy / 50.0)))
+				var waterp = p.noise(wx / 150.0, wy / 150.0);
+				var roadsp = (Math.abs(p.noise(wx / 50.0, wy / 50.0)));
 				
-				var treep = Math.max(0, p.noise(wx / 150.0, wy / 150.0)) + p.noise(wx / 3.0, wy / 3.0)
+				var treep = Math.max(0, p.noise(wx / 150.0, wy / 150.0)) + p.noise(wx / 3.0, wy / 3.0);
 				
 				// water bits
-				var oasis = desertp > 0.95
-				var lake = desertp < -0.6
-				var river = desert1 < 0.6 && Math.abs(waterp) < 0.075
+				var oasis = desertp > 0.95;
+				var lake = desertp < -0.6;
+				var river = desert1 < 0.6 && Math.abs(waterp) < 0.075;
 				// desert
-				var desert = desertp > 0.6 && desertp < 1.0 || desert1 > 0.8
+				var desert = desertp > 0.6 && desertp < 1.0 || desert1 > 0.8;
 				// roads
-				var roads = Math.abs(roadsp) < 0.05
-				var riversideRoads = desertp < 0.6 && Math.abs(waterp) < 0.11 && Math.abs(waterp > 0.08)
+				var roads = Math.abs(roadsp) < 0.05;
+				var riversideRoads = desertp < 0.6 && Math.abs(waterp) < 0.11 && Math.abs(waterp > 0.08);
 				// trees
-				var trees = treep > 0.75
+				var trees = treep > 0.9;
 				
 				if (lake || river || oasis) {
 					terrain = 4;
