@@ -2,8 +2,7 @@ function Player(gs, world) {
 	this.priority = 10;
 	this.position = vectorize([0, 0]);
 	this.destination = vectorize([0, 0]);
-	this.close_threshold = 0.1;
-	this.velocity = 0.1;
+	this.velocity = 0.15;
 	this.last_square = vectorize([0, 0]);
 	
 	var sprite = new Sprite(["center", "bottom"], {
@@ -30,7 +29,7 @@ function Player(gs, world) {
 		if (this.position != this.destination) {
 			// get the vector pointing towards the destination
 			var towards = vectorize(this.destination.slice()).subtract(this.position);
-			if (towards.abs() < this.close_threshold) {
+			if (towards.abs() <= this.velocity) {
 				this.position = this.destination;
 			} else {
 				this.position.add(towards.unit().multiply(this.velocity));

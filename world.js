@@ -1,5 +1,5 @@
 function World(gs) {
-	fieldsize = [20, 20];
+	fieldsize = [32, 32];
 	
 	this.priority = 0;
 	var iso = this.iso = new Isometric();

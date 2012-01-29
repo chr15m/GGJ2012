@@ -9,6 +9,9 @@
  * SFX
  * Music
 
+ * Make mushroom be something else (reeds?) over water
+ * Bottom of mushroom should be non-line
+
  * Polish
  * Loading screens - art, sound, level data generation
  * Screen resize code

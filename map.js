@@ -63,7 +63,7 @@ function Map(gs, world, size) {
 				} else {
 					terrain = 0;
 				}
-			
+				
 				// add a tree if this is a tree tile
 				if (terrain == 3) {
 					tr.seed3d(wx, wy, seed);
@@ -72,8 +72,8 @@ function Map(gs, world, size) {
 				
 				// randomly add npcs
 				tr.seed3d(wx, wy, seed);
-				if (tr.next() > .99) {
-					npcs.push(gs.addEntity(new Critter(gs, world, [wx, wy], tr)));
+				if (tr.next() > .975) {
+					npcs.push(gs.addEntity(new Critter(gs, world, [wx, wy], tr, npcs)));
 				}
 				
 				this.field[wx][wy] = terrain;
