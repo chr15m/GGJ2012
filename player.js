@@ -4,6 +4,7 @@ function Player(gs, world) {
 	this.destination = vectorize([0, 0]);
 	this.velocity = 0.15;
 	this.last_square = vectorize([0, 0]);
+	var npcs = world.map.npcs;
 	
 	var sprite = new Sprite(["center", "bottom"], {
 		"down-left": [
@@ -37,6 +38,12 @@ function Player(gs, world) {
 				var angle = Math.atan2(towards[1], towards[0]);
 				var direction = (angle < Math.PI * .25 && angle > Math.PI * -.75 ? "down" : "up") + "-" + (angle < Math.PI * -0.25 || angle > Math.PI * 0.75 ? "left" : "right");
 				sprite.action(direction);
+			}
+		}
+		// are we close to an npc?
+		for (n=0; n<npcs.length; n++) {
+			if (npcs[n].state == "ghost" && vectorize(npcs[n].position.slice()).subtract(this.position).abs() < 0.5) {
+				npcs[n].set_state("mushroom");
 			}
 		}
 		this.priority = world.iso.w2s(this.position)[1];

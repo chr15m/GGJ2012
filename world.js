@@ -7,8 +7,8 @@ function World(gs) {
 	
 	this.shadow = (new Sprite(["center", "center"], {"default": [["res/img/shadow.png", 3]]})).action("default");
 	
-	var player = gs.addEntity(new Player(gs, this)).set_position([fieldsize[0] / 2, fieldsize[1] / 2]);
 	this.map = new Map(gs, this, fieldsize);
+	var player = gs.addEntity(new Player(gs, this)).set_position([fieldsize[0] / 2, fieldsize[1] / 2]);
 	
 	var loadnew = true;
 	
