@@ -128,6 +128,7 @@ function Critter(gs, world, pos, current, random, npcs) {
 		this.move_to_destination(function() {
 			// me.destination.set_state("floaty");
 			me.destination.set_random_position();
+			//me.destination.set_state("floaty");
 			// find a random ghost and turn it into a mushroom
 			//me.find_random_of_type("floaty").set_state("mushroom");
 			this.destination = null;
@@ -168,6 +169,7 @@ function Critter(gs, world, pos, current, random, npcs) {
 				sprite.action("ghost-eat", true, function() {
 					// other.set_state("ghost");
 					other.set_random_position();
+					//other.set_state("mushroom");
 					sprite.action("ghost-left");
 					//me.find_random_of_type("ghost").set_state("floaty");
 					me.destination = null;
@@ -184,7 +186,7 @@ function Critter(gs, world, pos, current, random, npcs) {
 		// run away from the player
 		var away = vectorize(this.position.slice()).subtract(world.player.position);
 		var dist = away.abs();
-		return away.unit().multiply((50 - dist) / 25);
+		return away.unit().multiply(5/dist);
 	}
 	
 	/*** Mushroom mode ***/

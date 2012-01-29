@@ -44,6 +44,9 @@ function World(gs) {
 			loadnew = true;
 		}
 		gs.sortEntities();
+		if (!this.map.count_ghosts() && (gs.frameCount > 100)) {
+			alert("All of the ghosts are dead. You win.\n\n\nOR DO YOU?");
+		}
 	}
 	
 	this.draw = function(c) {

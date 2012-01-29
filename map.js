@@ -84,6 +84,16 @@ function Map(gs, world, size) {
 	}
 	this.init();
 	
+	this.count_ghosts = function() {
+		var num_ghosts = 0;
+		for (var n=0; n<this.npcs.length; n++) {
+			if (this.npcs[n].state == "ghost") {
+				num_ghosts++;
+			}
+		}
+		return num_ghosts;
+	}
+	
 	this.get_tile = function(x, y) {
 		return this.terraintypes[this.field[x.mod(size[0])][y.mod(size[1])]];
 	}
