@@ -1,10 +1,15 @@
 function World(gs) {
+	fieldsize = [20, 20];
+	
+	this.priority = 0;
 	var iso = this.iso = new Isometric();
 	iso.set_screen_object(gs);
-	var player = gs.addEntity(new Player(gs, this));
+	
 	this.shadow = (new Sprite(["center", "center"], {"default": [["res/img/shadow.png", 3]]})).action("default");
-	fieldsize = [20, 20];
+	
+	var player = gs.addEntity(new Player(gs, this)).set_position([fieldsize[0] / 2, fieldsize[1] / 2]);
 	this.map = new Map(gs, this, fieldsize);
+	
 	var loadnew = true;
 	
 	var clrs = {

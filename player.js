@@ -54,6 +54,7 @@ function Player(gs, world) {
 	
 	this.set_position = function(pos) {
 		this.destination = this.position = vectorize(pos);
+		return this;
 	}
 	
 	this.changed_square = function() {
