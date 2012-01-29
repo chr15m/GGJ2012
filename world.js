@@ -47,6 +47,7 @@ function World(gs) {
 	}
 	
 	this.draw = function(c) {
+		gs.background(clrs["grass"]);
 		// draw the background grid
 		/*var bounds = iso.s2w([gs.width / 2, -gs.height / 2]).each(rounder).each(function(i,e){ return e - 0.5;});
 		c.strokeStyle = "#aca";
@@ -72,12 +73,18 @@ function World(gs) {
 			for (var y=field[1]; y<field[1] + field[3]; y++) {
 				//console.log(clrs[this.map.get_tile(x, y)]);
 				if (x >= 0 && y >= 0 && x < fieldsize[0] && y < fieldsize[1]) {
-					this.draw_square(c, [x,y], clrs[this.map.get_tile(x, y)]);
+					var tile = this.map.get_tile(x, y);
+					if (tile != "grass" && tile != "trees") {
+						this.draw_square(c, [x,y], clrs[tile]);
+					}
 				}
 			}
 		}
 		// draw highlighted square
-		this.draw_square(c, iso.s2w(gs.pointerPosition).each(Math.round), "rgba(255, 255, 255, 0.5)");
+		var isopointer = iso.s2w(gs.pointerPosition).each(Math.round);
+		if (isopointer[0] >= 0 && isopointer[1] >= 0 && isopointer[0] < fieldsize[0] && isopointer[1] < fieldsize[1]) {
+			this.draw_square(c, isopointer, "rgba(255, 255, 255, 0.5)");
+		}
 	}
 	
 	this.pointerBox = function() {

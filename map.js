@@ -5,6 +5,7 @@ function Map(gs, world, size) {
 	var p = new noise.SimplexNoise(r);
 	this.props = [];
 	this.field = [];
+	var npcs = [];
 	
 	this.terraintypes = [
 		"grass",
@@ -70,6 +71,10 @@ function Map(gs, world, size) {
 				}
 				
 				// randomly add npcs
+				tr.seed3d(wx, wy, seed);
+				if (tr.next() > .99) {
+					npcs.push(gs.addEntity(new Critter(gs, world, [wx, wy], tr)));
+				}
 				
 				this.field[wx][wy] = terrain;
 			}
