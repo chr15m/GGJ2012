@@ -45,7 +45,7 @@ function Player(gs, world) {
 	
 	this.draw = function(c) {
 		world.shadow.draw(c, world.iso.w2s(this.position));
-		sprite.draw(c, world.iso.w2s([this.position[0], this.position[1], 0.3]));
+		sprite.draw(c, world.iso.w2s([this.position[0], this.position[1], 0.3 + Math.sin(gs.frameCount * 0.25) * 0.01]));
 	}
 	
 	this.move_to = function(pos) {
