@@ -9,6 +9,10 @@ function Critter(gs, world, pos, current, random, npcs) {
 	this.push = vectorize([0, 0]);
 	this.enemies = null;
 	this.calculate_push = null;
+	var velocities = {
+		"ghost": 0.03,
+		"floaty": 0.025
+	}
 	
 	var oscillate = 0.25 + (Math.random() * 0.01);
 	
@@ -111,7 +115,7 @@ function Critter(gs, world, pos, current, random, npcs) {
 	
 	this.floaty_init = function(c) {
 		sprite.action("floaty");
-		this.velocity = 0.05;
+		this.velocity = velocities['floaty'];
 		this.calculate_push = null;
 	}
 	
@@ -141,7 +145,7 @@ function Critter(gs, world, pos, current, random, npcs) {
 	
 	this.ghost_init = function(b) {
 		sprite.action("ghost-left");
-		this.velocity = 0.075;
+		this.velocity = velocities['ghost'];
 		this.calculate_push = this.ghost_push;
 	}
 	

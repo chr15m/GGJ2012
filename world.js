@@ -45,7 +45,8 @@ function World(gs) {
 		}
 		gs.sortEntities();
 		if (!this.map.count_ghosts() && (gs.frameCount > 100)) {
-			alert("All of the ghosts are dead. You win.\n\n\nOR DO YOU?");
+			// TODO: win condition
+			//alert("All of the ghosts are dead. You win.\n\n\nOR DO YOU?");
 		}
 	}
 	
