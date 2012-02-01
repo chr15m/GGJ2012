@@ -17,7 +17,7 @@ function World(gs) {
 		"road": "rgb(70, 70, 70)",
 		"sand": "rgb(204, 204, 70)",
 		"trees": "rgb(180, 255, 180)",
-		"grass": "rgb(180, 255, 180)",
+		"grass": "rgb(180, 255, 180)"
 	};
 	
 	function rounder(i, e) {

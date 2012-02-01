@@ -36,7 +36,7 @@ function Critter(gs, world, pos, current, random, npcs) {
 			["res/img/floaty-cute-2.png", 5]
 		],
 		"floaty-invisible": [
-			["res/img/blank.png", 5],
+			["res/img/blank.png", 5]
 		],
 		"mushroom-1": [
 			["res/img/mushroom-1.png", 3]

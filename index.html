@@ -52,13 +52,22 @@
 		a:hover {
 			color: red;
 		}
+		div#logo img {
+			*visibility: hidden;
+		}
+		div#logo {
+			*width: 113px;
+			*height: 129px;
+			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="res/img/logo.png", sizingMethod='scale');
+		}
+		
 	</style>
 </head>
 <body>
 	<div id="distance"></div>
 	<div id="content">
 		<div id='inner'>
-			<img src='res/img/logo.png'/>
+			<div id='logo'><img src='res/img/logo.png'/></div>
 			<p id='title'>The Cycle</p>
 			<br/>
 			<a href='javascript:var w = window.open("main.html", "ourobogamewin", "width=888,height=500,fullscreen=0,resizable=0,toolbar=0,scrollbars=0");'>Play</a>
